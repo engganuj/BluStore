@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #196CDF;
+    --color-primary-hover: #3782E7;
+    --color-primary-active: #0C4A9C;
+    --color-on-primary: #FFFFFF;
+
+    --color-secondary: #012957;
+    --color-on-secondary: #FFFFFF;
+
+    --color-link: #196CDF;
+    --color-link-hover: #0C4A9C;
+
+    --color-success: #19A27E;
+    --color-success-hover: #108265;
+    --color-warning: #F4C652;
+    --color-warning-hover: #D3A95C;
+    --color-info: #29C9E0;
+    --color-info-hover: #26A2BA;
+
+    --color-text: #012957;
+    --color-text-muted: #465D77;
+    --color-border: #C3C9D6;
+    --color-bg: #F4F8FC;
+    --color-surface: #FFFFFF;
+    --color-surface-muted: #E8EDF3;
+
+    --color-focus: #84C1FC;
+  }
+
+  body {
+    @apply antialiased;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply text-white font-semibold py-2.5 px-5 rounded-lg shadow-sm transition-all duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+    background-color: var(--color-primary);
+    &:hover { background-color: var(--color-primary-hover); }
+    &:active { background-color: var(--color-primary-active); }
+    &:focus { --tw-ring-color: var(--color-focus); }
+  }
+
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-50 font-semibold py-2.5 px-5 rounded-lg shadow-sm transition-all duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    &:focus { --tw-ring-color: var(--color-focus); }
+  }
+
+  .btn-danger {
+    @apply bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg shadow-sm transition-all duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 rounded-lg transition-all duration-150 ease-in-out text-sm;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    &::placeholder { color: var(--color-text-muted); opacity: 0.6; }
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px var(--color-focus);
+    }
+  }
+
+  .card {
+    @apply rounded-xl shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-success {
+    @apply bg-success-50 text-success-700;
+  }
+
+  .badge-warning {
+    @apply bg-warning-50 text-warning-700;
+  }
+
+  .badge-danger {
+    @apply bg-red-100 text-red-800;
+  }
+
+  .badge-info {
+    @apply bg-info-50 text-info-700;
+  }
+
+  .stat-card {
+    @apply rounded-xl p-6 shadow-sm transition-all duration-200 hover:shadow-md;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ── WP-Admin fullscreen takeover ─────────────────────────────
+   Scoped to .blu-fullscreen (added to <body> only on our plugin page).
+   Hides the admin bar, left menu, footer, and WP notices so the React
+   app occupies the entire viewport. Other wp-admin pages are unaffected. */
+
+.blu-fullscreen #wpadminbar,
+.blu-fullscreen #adminmenumain,
+.blu-fullscreen #adminmenuback,
+.blu-fullscreen #adminmenuwrap,
+.blu-fullscreen #wpfooter,
+.blu-fullscreen .notice,
+.blu-fullscreen .update-nag,
+.blu-fullscreen .updated,
+.blu-fullscreen .error,
+.blu-fullscreen #screen-meta,
+.blu-fullscreen #screen-meta-links {
+  display: none !important;
+}
+
+.blu-fullscreen #wpcontent,
+.blu-fullscreen #wpbody-content {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.blu-fullscreen #wpcontent {
+  padding-top: 0 !important;
+}
+
+.blu-fullscreen .wrap {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.blu-fullscreen #wpbody-content {
+  padding-bottom: 0 !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface-muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-150;
+}
